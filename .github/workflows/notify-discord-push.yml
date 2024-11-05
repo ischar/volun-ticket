@@ -2,7 +2,7 @@ name: Notify Discord on Push
 on:
   push:
     branches:
-      - frontend
+      - frontend 
 
 jobs:
   discord_notification:
@@ -21,7 +21,7 @@ jobs:
                     "embeds": [
                       {
                         "title": "푸시 알림",
-                        "description": "**브랜치:** `'${GITHUB_REF_NAME}'`\n**커밋 메시지:** `'${GITHUB_EVENT_HEAD_COMMIT_MESSAGE}'`\n**커밋 작성자:** `'${GITHUB_ACTOR}'`",
+                        "description": "**브랜치:** `${{ github.ref_name }}`\n**커밋 메시지:** `${{ github.event.head_commit.message }}`\n**커밋 작성자:** `${{ github.actor }}`",
                         "color": "0033FF",
                         "image": {
                           "url": "https://i.postimg.cc/SNQjYtv8/vt-logo.png"
