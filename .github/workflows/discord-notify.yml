@@ -2,8 +2,8 @@ name: Notify Discord on Push
 on:
   push:
     branches:
-      - frontend 
-  workflow_dispatch: 
+      - frontend  # 'frontend' 브랜치에 푸시될 때만 실행
+  workflow_dispatch:  # 수동 실행을 위한 설정 추가
 
 jobs:
   discord_notification:
@@ -13,7 +13,7 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "GITHUB_REF_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-          echo "GITHUB_COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+          echo "GITHUB_COMMIT_MESSAGE=${{ github.event.head_commit.message }}" >> $GITHUB_ENV
           echo "GITHUB_ACTOR=${GITHUB_ACTOR}" >> $GITHUB_ENV
 
       - name: Send notification to Discord
