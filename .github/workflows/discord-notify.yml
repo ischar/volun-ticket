@@ -2,9 +2,8 @@ name: Notify Discord on Push
 on:
   push:
     branches:
-      - frontend  # 'frontend' 브랜치에 푸시될 때만 실행
-  workflow_dispatch:  # 수동 실행을 위한 설정 추가
-
+      - frontend 
+  workflow_dispatch: 
 jobs:
   discord_notification:
     runs-on: ubuntu-latest
@@ -29,6 +28,9 @@ jobs:
                       {
                         "title": "푸시 알림",
                         "color": 3381759,
+                        "thumbnail": {
+                          "url": "https://i.postimg.cc/SNQjYtv8/vt-logo.png" 
+                        }, 
                         "fields": [
                           {
                             "name": "브랜치",
