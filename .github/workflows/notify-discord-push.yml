@@ -2,13 +2,19 @@ name: Notify Discord on Push
 on:
   push:
     branches:
-      - frontend  
+      - frontend 
 
 jobs:
   discord_notification:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up environment variables
+        run: |
+          echo "GITHUB_REF_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          echo "GITHUB_COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+          echo "GITHUB_ACTOR=${GITHUB_ACTOR}" >> $GITHUB_ENV
+
       - name: Send notification to Discord
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -21,9 +27,9 @@ jobs:
                     "embeds": [
                       {
                         "title": "푸시 알림",
-                        "description": "**브랜치:** '${GITHUB_REF_NAME}'\n**커밋 메시지:** '${GITHUB_EVENT_HEAD_COMMIT_MESSAGE}'\n**커밋 작성자:** '${GITHUB_ACTOR}'",
+                        "description": "**브랜치:** '"$GITHUB_REF_NAME"'\n**커밋 메시지:** '"$GITHUB_COMMIT_MESSAGE"'\n**커밋 작성자:** '"$GITHUB_ACTOR"'",
                         "color": 3381759,
-                        "image": {
+                        "thumbnail": {
                           "url": "https://i.postimg.cc/SNQjYtv8/vt-logo.png"
                         },
                         "footer": {
