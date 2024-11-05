@@ -28,7 +28,7 @@ jobs:
                     "embeds": [
                       {
                         "title": "푸시 알림",
-                        "description": "**브랜치:** '"$GITHUB_REF_NAME"'\n**커밋 메시지:** '"$GITHUB_COMMIT_MESSAGE"'\n**커밋 작성자:** '"$GITHUB_ACTOR"'",
+                        "description": "**브랜치**          **커밋 작성자**\n'"$GITHUB_REF_NAME"'         '"$GITHUB_ACTOR"'\n\n**커밋 메시지**\n'"$GITHUB_COMMIT_MESSAGE"'",
                         "color": 3381759,
                         "thumbnail": {
                           "url": "https://i.postimg.cc/SNQjYtv8/vt-logo.png"
