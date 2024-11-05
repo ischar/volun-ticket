@@ -28,11 +28,24 @@ jobs:
                     "embeds": [
                       {
                         "title": "푸시 알림",
-                        "description": "**브랜치**          **커밋 작성자**\n'"$GITHUB_REF_NAME"'         '"$GITHUB_ACTOR"'\n\n**커밋 메시지**\n'"$GITHUB_COMMIT_MESSAGE"'",
                         "color": 3381759,
-                        "thumbnail": {
-                          "url": "https://i.postimg.cc/SNQjYtv8/vt-logo.png"
-                        },
+                        "fields": [
+                          {
+                            "name": "브랜치",
+                            "value": "'"$GITHUB_REF_NAME"'",
+                            "inline": true
+                          },
+                          {
+                            "name": "커밋 작성자",
+                            "value": "'"$GITHUB_ACTOR"'",
+                            "inline": true
+                          },
+                          {
+                            "name": "커밋 메시지",
+                            "value": "'"$GITHUB_COMMIT_MESSAGE"'",
+                            "inline": false
+                          }
+                        ],
                         "footer": {
                           "text": "GitHub Actions - 자동 알림"
                         },
